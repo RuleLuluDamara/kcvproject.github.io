@@ -1,13 +1,90 @@
-.jumbotron {
-  padding-top: 6rem;
-  background-color: #a6bb8d;
-
+*{
+  overflow-x: hidden;
 }
+
+body {
+  font-family: 'Montserrat';
+  text-align: center;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Montserrat';
+  font-weight: bold;
+}
+
+/*home section*/
+#home {
+  text-align: left;
+} 
+
+.container-fluid {
+  padding: 3% 10% 5%;
+}
+
+.colored-sec { /*section coloring*/
+  background-color: black;
+  color: #FFF;
+}
+
+.white-sec {
+  background-color: #FFF;
+}
+
+/* Navigation Bar */
+.navbar-brand {
+  font-family: "Ubuntu";
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.nav-item {
+  padding: 0 18px;
+}
+
+.nav-link {
+  font-size: 1.2rem;
+  font-family: "Montserrat";
+  font-weight: 300;
+}
+
+/* Title Image */
+.title-img {
+  width: 300px;
+  width: 60%;
+  right: 30%;
+}
+
 
 #projects {
   background-color: black;
 }
 
-section {
-  padding-top: 4rem;
+/* Headings */
+
+.display-1 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-size: 3.5rem;
+  line-height: 1.5;
+  padding-left: 30%;
 }
+
+.section-heading {
+  font-size: 3rem;
+  line-height: 1.5;
+}
+
+.feature-title {
+  font-size: 1.5rem;
+}
+
+
+/* about Section */
+#about {
+  padding-bottom: 48px;
+}
+
+.person {
+  padding: 5%;
+}
+
