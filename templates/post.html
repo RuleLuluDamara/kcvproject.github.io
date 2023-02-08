@@ -1,0 +1,28 @@
+{% load static %}
+<h1>Create Post Page</h1>
+<div class="posting">
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Submit New Post</button>
+  </form>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Submit New Post</button>
+
+  </form>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Submit New Post</button>
+
+  </form>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Submit New Post</button>
+  </form>
+</div>
+
+<script src="{% static 'js/index.js' %}"></script>

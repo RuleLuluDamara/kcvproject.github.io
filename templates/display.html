@@ -1,0 +1,59 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="{% static 'css/display.css' %}">
+</head>
+<body>
+  <h2 style="text-align:center">Traffic Optimization Result</h2>
+  
+  <div class="responsive">
+    <div class="img">
+        <img src="../media/images/result1.jpg" alt="Result 1" width="300" height="200">
+      <div class="desc">{{result1}}</div>
+    </div>
+  </div>
+  
+  
+  <div class="responsive">
+    <div class="img">
+      <img src="../media/images/result2.jpg" alt="Result 2" width="300" height="200">
+      <div class="desc">{{result2}}</div>
+    </div>
+  </div>
+  
+  <div class="responsive">
+    <div class="img">
+      <img src="../media/images/result3.jpg" alt="Result 3" width="300" height="200">
+      <div class="desc">{{result3}}</div>
+    </div>
+  </div>
+  
+  <div class="responsive">
+    <div class="img">
+      <img src="../media/images/result4.jpg" alt="Result 4" width="300" height="200">
+      <div class="desc">{{result4}}</div>
+    </div>
+  </div>
+  
+  <div class="clearfix"></div>
+  
+  <!-- The Modal -->
+  <div id="myModal" class="modal">
+    <span class="close">×</span>
+    <img class="modal-content" id="img01">
+    <div id="caption"></div>
+  </div>
+  
+  <!-- <div style="padding:6px;">
+    <p>This example combines CSS3 (animation and media queries) and JavaScript, to create a responsive image gallery that will enlarge an image when it is clicked on.</p>
+  </div> -->
+
+  <script src="{% static 'js/display.js' %}"></script>
+</body>
+</html>
