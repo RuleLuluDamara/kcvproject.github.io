@@ -3,12 +3,12 @@ import skfuzzy as fuzz
 import matplotlib.pyplot as plt
 from skfuzzy import control as ctrl
 
-road_width = ctrl.Antecedent(np.arange(0, 11, 1), "Current Road's width")
-road_width_n = ctrl.Antecedent(np.arange(0, 11, 1), "Next Road's width")
-road_density = ctrl.Antecedent(np.arange(0, 18, 1), "Current Road's density")
-road_density_n = ctrl.Antecedent(np.arange(0, 18, 1), "Next Road's density")
+road_width = ctrl.Antecedent(np.arange(0, 12, 1), "Current Road's width")
+road_width_n = ctrl.Antecedent(np.arange(0, 12, 1), "Next Road's width")
+road_density = ctrl.Antecedent(np.arange(0, 19, 1), "Current Road's density")
+road_density_n = ctrl.Antecedent(np.arange(0, 19, 1), "Next Road's density")
 
-dur_green = ctrl.Consequent(np.arange(0, 70, 1), "Green Light Duration :")
+dur_green = ctrl.Consequent(np.arange(0, 71, 1), "Green Light Duration :")
 
 road_width['narrow']= fuzz.trimf(road_width_n.universe,[0, 0, 8])
 road_width['wide'] = fuzz.trimf(road_width_n.universe, [6, 11, 11])
@@ -33,10 +33,10 @@ dur_green['avg'] = fuzz.trimf(dur_green.universe, [10, 30, 50])
 dur_green['long'] = fuzz.trimf(dur_green.universe, [30, 50, 70])
 dur_green['very_long'] = fuzz.trimf(dur_green.universe, [50, 70, 70])
 
-road_width.view()
-road_width_n.view()
-road_density.view()
-road_density_n.view()
+# road_width.view()
+# road_width_n.view()
+# road_density.view()
+# road_density_n.view()
 
 # Legends : 
 # Current Road's width = rws
@@ -112,7 +112,6 @@ r25 = ctrl.Rule(
 combine_ctrl = ctrl.ControlSystem([r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12, r13, r14, r15, r16, r17, r18, r19, r20, r21, r22, r23, r24, r25])
 
 greenlight = ctrl.ControlSystemSimulation(combine_ctrl)
-
 greenlight.input["Current Road's width"] = int(input("Current Road's width : "))
 greenlight.input["Current Road's density"] = int(input("Current Road's density : "))
 greenlight.input["Next Road's width"] = int(input("Next Road's width : "))
