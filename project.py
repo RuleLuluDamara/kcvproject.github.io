@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from skfuzzy import control as ctrl
 
 
-input_road_width = int(input("Lebar Sekarang: "))
+input_road_width = int(input("Current Road's width : "))
 input_road_density = int(input("road_density Sekarang: "))
 input_road_width_n = int(input("Lebar Selanjutnya: "))
 input_road_density_n = int(input("road_density Selanjutnya: "))
@@ -181,7 +181,8 @@ ax0.fill_between(green_dur, hij, agg, facecolor='orange', alpha=0.7)
 ax0.plot([durasi_hijau, durasi_hijau], [0, plot_green_dur], 'k', linewidth=1.5, alpha=0.9)
 
 print("Durasi Lampu Hijau : ", durasi_hijau)
-plt.show()
+plt.savefig("Result.jpg")
+
 
 
 
