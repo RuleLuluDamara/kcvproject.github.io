@@ -11,6 +11,8 @@ cut_sampling = []
 contour_arr = np.zeros(shape=(1, 2))
 size = 1200, 1200, 1
 frame_yuv = np.zeros(shape=(1, 2))
+road_width = 0
+road_density = 0
 
 # predifine yuv value
 y_min = 255
@@ -93,7 +95,8 @@ def export_yuv():
 def coloring_image(frame_bgr, img_path, index):
     # cv2.imshow('kuning', frame_yuv)
     # img_threshold = frame_yuv.copy()
-    img_threshold = cv2.imread('static/picture_sample/sample1.jpg')
+    global road_width, road_density
+    img_threshold = cv2.imread('static/picture_sample/sample' + str(index) + '.jpg')
     # threshold hsv coba-coba
     hsv_image = cv2.cvtColor(img_threshold, cv2.COLOR_BGR2HSV)
 
@@ -111,7 +114,9 @@ def coloring_image(frame_bgr, img_path, index):
         mask.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     output = cv2.drawContours(frame_bgr, contours, -1, (0, 0, 255), 3)
     # cv2.imshow("output", output)
-    vehicle_detection(contours, mask, img_path, index)
+    return vehicle_detection(contours, mask, img_path, index)
+
+    
 
 
 
@@ -214,7 +219,12 @@ def vehicle_detection(contours, mask, img_path, index):
     class_ids = []
 
     # lane_width = get_lane_width()
-    lane_width = 1189
+    all_lane_width = [1189, 920, 593, 691]
+    if(index == 0):
+        lane_width = all_lane_width[3]
+    else :
+        lane_width = all_lane_width[index-1]
+        
     lane_width_m = round((lane_width/100) * 2)
 
     biggest_vehicle_px_width = 0
@@ -248,16 +258,17 @@ def vehicle_detection(contours, mask, img_path, index):
     for i in indexes.flatten():
         x, y, w, h = boxes[i]
         label = str(classes[class_ids[i]])
+        if label != 'train':
         # print(classes[class_ids[i]])
-        confidence = str(round(confidences[i], 2))
-        color = colors[i]
-        cv2.rectangle(out, (x, y), (x+w, y+h), color, 2)
-        if x+w > biggest_vehicle_px_width:
-            biggest_vehicle_px_width = w
-            vehicle_id = label
-        vehicle_total += 1
-        cv2.putText(out, label + " " + confidence,
-                    (x, y+20), font, 2, (255, 255, 255), 2)
+            confidence = str(round(confidences[i], 2))
+            color = colors[i]
+            cv2.rectangle(out, (x, y), (x+w, y+h), color, 2)
+            if x+w > biggest_vehicle_px_width:
+                biggest_vehicle_px_width = w
+                vehicle_id = label
+            vehicle_total += 1
+            cv2.putText(out, label + " " + confidence,
+                        (x, y+20), font, 2, (255, 255, 255), 2)
 
     # cv2.imshow("offce", out)
     cv2.putText(out, "total vehicle: " + str(vehicle_total),
@@ -270,6 +281,7 @@ def vehicle_detection(contours, mask, img_path, index):
     # if ret == True:
     #     saved_frame.write(out)
     cv2.imwrite('media/images/result' + str(index) + '.jpg', out)
+    return [lane_width_m, vehicle_total]
     # cv2.imshow('video', out)
     # key = cv2.waitKey(0)
     # if key == ord('e'):
@@ -281,7 +293,8 @@ def run_all(img_path, index):
   img = cv2.imread(str(img_path))
   frame_bgr = cv2.resize(img, (1200, 600))
   frame_yuv = cv2.cvtColor(frame_bgr, cv2.COLOR_BGR2HSV)
-  coloring_image(frame_bgr, img_path, index)
+  
+  return coloring_image(frame_bgr, img_path, index)
   # k = cv2.waitKey(0) & 0xFF
 
 
